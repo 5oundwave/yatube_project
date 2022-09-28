@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path,include
 
-from . import views
+app_name = 'url'
 
 urlpatterns = [
-    path('', views.index),
+    path('', include(('posts.urls', 'index_list'), namespace = 'index')),
 
-    path('post/', views.group_posts),
-] 
+    path('group/<slug:slug>/', include(('posts.urls', 'posts_list'), namespace='group_posts')),
+]
